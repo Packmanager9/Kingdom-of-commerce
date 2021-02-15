@@ -1029,10 +1029,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.speed = .01//-(this.goods.length/100)
 
             this.marked = 0
+            this.age = 0
 
         }
         draw() {
 
+            this.age++
 
             this.angle += this.speed
             this.body.x = (Math.cos(this.angle) * 297) + globe.x
@@ -1042,7 +1044,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             for (let t = 0; t < kingdoms.length; t++) {
                 if (t != this.castle.dir) {
                     if (kingdoms[t].gold >= ((this.bread * breadprice) + (this.fish * fishprice))) {
-                    } else {
+                    } else if(this.age < 20){
                         this.marked = 1
                         break
                     }
