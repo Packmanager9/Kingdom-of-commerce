@@ -1017,13 +1017,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (this.castle.dir == 0) {
                 if (this.castle.fish >= 10) {
                     this.fish = 10
-                    this.castle.fish -= 10
+                    // this.castle.fish -= 10
                 }
             }
             if (this.castle.dir == 1) {
                 if (this.castle.bread >= 10) {
                     this.bread = 10
-                    this.castle.bread -= 10
+                    // this.castle.bread -= 10
                 }
             }
             this.speed = .01//-(this.goods.length/100)
@@ -1032,6 +1032,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         }
         draw() {
+
+
             this.angle += this.speed
             this.body.x = (Math.cos(this.angle) * 297) + globe.x
             this.body.y = (Math.sin(this.angle) * 297) + globe.y
@@ -1042,6 +1044,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (kingdoms[t].gold >= ((this.bread * breadprice) + (this.fish * fishprice))) {
                     } else {
                         this.marked = 1
+                        break
                     }
                     if (kingdoms[t].door.doesPerimeterTouch(this.body)) {
                         if (kingdoms[t].gold >= ((this.bread * breadprice) + (this.fish * fishprice))) {
@@ -1050,6 +1053,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             this.marked = 1
                             this.castle.gold += (this.bread * breadprice)
                             this.castle.gold += (this.fish * fishprice)
+                            this.castle.bread += this.bread
+                            this.castle.fish += this.fish
                             kingdoms[t].gold -= (this.bread * breadprice)
                             kingdoms[t].gold -= (this.fish * fishprice)
                             this.fish = 0
